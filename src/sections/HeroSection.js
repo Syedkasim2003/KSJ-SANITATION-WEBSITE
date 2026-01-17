@@ -6,7 +6,6 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import main1 from '../assets/main-1.webp';
 import main2 from '../assets/main-2.jpg';
-import main2jpeg from '../assets/main2.jpeg';
 import main3 from '../assets/main-3.jpg';
 
 const sliderImages = [
