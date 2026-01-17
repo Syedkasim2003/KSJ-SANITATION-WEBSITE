@@ -2,7 +2,7 @@ import React from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/navigation';
-import { Navigation } from 'swiper/modules';
+import { Navigation, Autoplay } from 'swiper/modules';
 import { motion } from 'framer-motion';
 
 const projects = [
@@ -21,7 +21,7 @@ const projects = [
     images: [
       require('../assets/prime-arc-1.png'),
       require('../assets/prime-arc-2.png'),
-      'https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=400&q=80',
+      'https://images.jdmagicbox.com/comp/madurai/k9/0452px452.x452.220306213613.i4k9/catalogue/pryme-ark-surya-nagar-madurai-residential-buildings-9rx4vmhp40.jpg',
     ],
     location: 'Madurai',
     desc: 'Successfully completed the installation of 24 toilets along with full sanitary works, ensuring high-quality plumbing and modern hygiene standards.',
@@ -51,9 +51,11 @@ const ProjectsSection = () => (
             transition={{ type: 'spring', stiffness: 300, damping: 24 }}
           >
             <Swiper
-              modules={[Navigation]}
+              modules={[Navigation, Autoplay]}
               navigation={true}
               slidesPerView={1}
+              loop={true}
+              autoplay={{ delay: 5000, disableOnInteraction: false }}
               className="h-40 sm:h-48 md:h-64 lg:h-80 w-full transition-all duration-300"
             >
               {project.images.map((img, i) => (

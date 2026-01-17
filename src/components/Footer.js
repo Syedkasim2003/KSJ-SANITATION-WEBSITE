@@ -33,7 +33,7 @@ const infoCards = [
 ];
 
 const Footer = () => (
-  <footer className="bg-primary pt-4 pb-4 mt-10 md:mt-16 lg:mt-24 text-white overflow-hidden">
+  <footer id="footer" className="bg-primary pt-4 pb-4 mt-10 md:mt-16 lg:mt-24 text-white overflow-hidden">
     {/* Info Cards */}
     <div className="w-full flex justify-center z-10 mb-4 md:mb-6 lg:mb-8">
       <div className="flex flex-col md:flex-row gap-2 md:gap-4 lg:gap-6 w-full max-w-5xl px-1 sm:px-2 md:px-4">

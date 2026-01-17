@@ -8,6 +8,7 @@ import ProjectsSection from './sections/ProjectsSection';
 import FounderSection from './sections/FounderSection';
 import TestimonialsSection from './sections/TestimonialsSection';
 import QuoteSection from './sections/QuoteSection';
+import WhatsAppButton from './components/WhatsAppButton';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <QuoteSection />
       </main>
       <Footer />
+      <WhatsAppButton />
     </div>
   );
 }

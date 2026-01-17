@@ -1,0 +1,8 @@
+# Copy this file to ".env" and fill in your IDs
+# Restart dev server after changes (CRA loads env at build time)
+
+# Tawk.to
+REACT_APP_TAWK_PROPERTY_ID=YOUR_PROPERTY_ID
+REACT_APP_TAWK_WIDGET_ID=YOUR_WIDGET_ID
+
+
