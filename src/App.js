@@ -1,3 +1,4 @@
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import './index.css';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
@@ -10,7 +11,7 @@ import TestimonialsSection from './sections/TestimonialsSection';
 import QuoteSection from './sections/QuoteSection';
 import WhatsAppButton from './components/WhatsAppButton';
 
-function App() {
+function MainLayout() {
   return (
     <div className="font-sans bg-white text-dark">
       <Navbar />
@@ -26,6 +27,18 @@ function App() {
       <Footer />
       <WhatsAppButton />
     </div>
+  );
+}
+
+function App() {
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<MainLayout />} />
+        {/* Redirect any unknown path to the home page */}
+        <Route path="*" element={<Navigate to="/" replace />} />
+      </Routes>
+    </Router>
   );
 }
 
