@@ -11,13 +11,19 @@ const infoCards = [
         S Alangulam, Madurai
       </>
     ),
+    href: 'https://www.google.com/maps/search/?api=1&query=X449%2BFJ7%2C%20S%20Alangulam%2C%20Madurai%2C%20Tamil%20Nadu%20625017',
   },
   {
     icon: <FaPhoneAlt size={32} className="text-white" />,
-    title: 'Phone Numbers:',
+    title: 'Contact Details:',
     content: (
       <>
-        <span className="text-accent font-bold text-xl">7708235555</span><br />Emergency
+        <a
+          href="tel:7708235555"
+          className="text-accent font-bold text-xl hover:underline focus:outline-none focus:ring-2 focus:ring-accent rounded"
+        >
+          7708235555
+        </a>
       </>
     ),
   },
@@ -37,20 +43,26 @@ const Footer = () => (
     {/* Info Cards */}
     <div className="w-full flex justify-center z-10 mb-4 md:mb-6 lg:mb-8">
       <div className="flex flex-col md:flex-row gap-2 md:gap-4 lg:gap-6 w-full max-w-5xl px-1 sm:px-2 md:px-4">
-        {infoCards.map((card, idx) => (
-          <div
-            key={idx}
-            className="flex-1 bg-white rounded-xl shadow-lg flex flex-col items-center py-2 sm:py-4 md:py-6 px-2 sm:px-4 md:px-6 text-center border-t-4 border-primary min-w-[120px] sm:min-w-[160px] md:min-w-[220px] max-w-xs sm:max-w-sm mx-auto"
-          >
-            <div className="bg-primary rounded-full p-2 sm:p-3 md:p-4 shadow-md mb-1 sm:mb-2">
-              {card.icon}
-            </div>
-            <div className="mt-1 sm:mt-2">
-              <h4 className="font-bold text-xs sm:text-base md:text-lg text-primary mb-1 sm:mb-2">{card.title}</h4>
-              <div className="text-dark text-xs sm:text-sm md:text-base">{card.content}</div>
-            </div>
-          </div>
-        ))}
+        {infoCards.map((card, idx) => {
+          const Container = card.href ? 'a' : 'div';
+          return (
+            <Container
+              key={idx}
+              href={card.href}
+              target={card.href ? '_blank' : undefined}
+              rel={card.href ? 'noopener noreferrer' : undefined}
+              className="flex-1 bg-white rounded-xl shadow-lg flex flex-col items-center py-2 sm:py-4 md:py-6 px-2 sm:px-4 md:px-6 text-center border-t-4 border-primary min-w-[120px] sm:min-w-[160px] md:min-w-[220px] max-w-xs sm:max-w-sm mx-auto transition-transform duration-200 hover:-translate-y-1 hover:shadow-xl"
+            >
+              <div className="bg-primary rounded-full p-2 sm:p-3 md:p-4 shadow-md mb-1 sm:mb-2">
+                {card.icon}
+              </div>
+              <div className="mt-1 sm:mt-2">
+                <h4 className="font-bold text-xs sm:text-base md:text-lg text-primary mb-1 sm:mb-2">{card.title}</h4>
+                <div className="text-dark text-xs sm:text-sm md:text-base">{card.content}</div>
+              </div>
+            </Container>
+          );
+        })}
       </div>
     </div>
 
