@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import { FaCheckCircle, FaWater, FaBath, FaRecycle, FaFireExtinguisher, FaCogs } from 'react-icons/fa';
 
 const services = [
@@ -11,16 +12,25 @@ const services = [
 ];
 
 const ServicesSection = () => (
-  <section id="services" className="py-20 bg-grayish">
-    <div className="max-w-6xl mx-auto px-4">
-      <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-primary mb-4 md:mb-8 lg:mb-10 text-center">Our Services</h2>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4 md:gap-8 lg:gap-10">
+  <section id="services" className="py-16 md:py-24 bg-white">
+    <div className="max-w-7xl mx-auto px-4 md:px-8">
+      <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-primary mb-6 md:mb-12 text-center">Our Services</h2>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
         {services.map((service, idx) => (
-          <div key={service.title} className="bg-white rounded-2xl shadow-lg p-3 sm:p-4 md:p-6 lg:p-8 flex flex-col items-center text-center hover:shadow-xl transition-shadow duration-300">
-            {service.icon}
-            <h3 className="text-base sm:text-lg md:text-xl lg:text-2xl font-semibold text-dark mb-1 md:mb-2">{service.title}</h3>
-            <p className="text-xs sm:text-sm md:text-base lg:text-lg text-dark/70">{service.desc}</p>
-          </div>
+          <motion.div
+            key={service.title}
+            className="bg-white rounded-2xl shadow-card p-6 md:p-8 flex flex-col items-center text-center hover:shadow-card-hover transition-all duration-300 hover:-translate-y-2 border-t-4 border-secondary group"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: idx * 0.1 }}
+            viewport={{ once: true }}
+          >
+            <div className="w-16 h-16 md:w-20 md:h-20 rounded-full bg-secondary/10 flex items-center justify-center mb-4 group-hover:bg-secondary/20 transition-colors duration-300">
+              {service.icon}
+            </div>
+            <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-dark mb-3">{service.title}</h3>
+            <p className="text-sm sm:text-base md:text-lg text-gray-600 leading-relaxed">{service.desc}</p>
+          </motion.div>
         ))}
       </div>
     </div>

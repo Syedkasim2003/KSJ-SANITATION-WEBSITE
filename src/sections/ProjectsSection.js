@@ -39,15 +39,15 @@ const projects = [
 ];
 
 const ProjectsSection = () => (
-  <section id="projects" className="py-20 bg-white">
-    <div className="max-w-6xl mx-auto px-4">
-      <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-primary mb-4 md:mb-8 lg:mb-10 text-center">Recent Projects</h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-6 lg:gap-10 mb-4 md:mb-6 lg:mb-8">
+  <section id="projects" className="py-16 md:py-24 bg-gradient-to-br from-gray-50 to-white">
+    <div className="max-w-7xl mx-auto px-4 md:px-8">
+      <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-primary mb-8 md:mb-14 text-center">Recent Projects</h2>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 mb-8 md:mb-12">
         {projects.map((project, idx) => (
           <motion.div
             key={project.title}
-            className="bg-grayish rounded-2xl shadow-lg overflow-hidden flex flex-col cursor-pointer transition-transform duration-300 hover:scale-105 hover:shadow-2xl"
-            whileHover={{ scale: 1.05 }}
+            className="bg-white rounded-3xl shadow-card overflow-hidden flex flex-col cursor-pointer transition-all duration-300 hover:shadow-card-hover hover:-translate-y-2 border-2 border-gray-100 group"
+            whileHover={{ scale: 1.02 }}
             transition={{ type: 'spring', stiffness: 300, damping: 24 }}
           >
             <Swiper
@@ -56,28 +56,28 @@ const ProjectsSection = () => (
               slidesPerView={1}
               loop={true}
               autoplay={{ delay: 5000, disableOnInteraction: false }}
-              className="h-40 sm:h-48 md:h-64 lg:h-80 w-full transition-all duration-300"
+              className="h-48 sm:h-56 md:h-72 w-full transition-all duration-300"
             >
               {project.images.map((img, i) => (
                 <SwiperSlide key={i}>
                   <img
                     src={img}
                     alt={project.title}
-                    className="h-40 sm:h-48 md:h-64 lg:h-80 w-full object-cover object-center rounded-t-2xl border-b-4 border-primary/10 shadow-md transition-all duration-300"
+                    className="h-48 sm:h-56 md:h-72 w-full object-cover object-center border-b-4 border-secondary/20 transition-all duration-300 group-hover:scale-105"
                   />
                 </SwiperSlide>
               ))}
             </Swiper>
-            <div className="p-2 sm:p-3 md:p-5 lg:p-7 flex-1 flex flex-col">
-              <h3 className="text-sm sm:text-base md:text-xl lg:text-2xl font-semibold text-dark mb-1">{project.title}</h3>
-              <span className="text-xs md:text-sm lg:text-base text-primary mb-1 md:mb-2">{project.location}</span>
-              <p className="text-xs sm:text-sm md:text-base lg:text-lg text-dark/70 flex-1">{project.desc}</p>
+            <div className="p-5 sm:p-6 md:p-8 flex-1 flex flex-col">
+              <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-dark mb-2">{project.title}</h3>
+              <span className="text-sm md:text-base text-secondary font-semibold mb-3">{project.location}</span>
+              <p className="text-sm sm:text-base md:text-lg text-gray-600 flex-1 leading-relaxed">{project.desc}</p>
             </div>
           </motion.div>
         ))}
       </div>
       <div className="text-center">
-        <a href="/projects" className="inline-block px-3 sm:px-4 md:px-6 lg:px-8 py-2 rounded-full bg-primary text-white font-semibold shadow hover:bg-accent transition-colors text-xs sm:text-sm md:text-base lg:text-lg">More Projects</a>
+        <a href="/projects" className="inline-block px-8 py-4 rounded-xl bg-gradient-to-r from-primary to-primary-dark text-white font-bold shadow-elevated hover:shadow-elevated-hover transition-all duration-300 hover:scale-105 text-base md:text-lg">View All Projects</a>
       </div>
     </div>
   </section>

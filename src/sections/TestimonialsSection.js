@@ -119,10 +119,10 @@ const StarRow = ({ count = 5 }) => (
 const GoogleBadge = () => (
   <div className="flex items-center gap-2 text-sm text-slate-600">
     <svg width="18" height="18" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <path fill="#EA4335" d="M24 9.5c3.8 0 6.4 1.6 7.9 3l5.8-5.7C34.5 3.3 29.7 1.5 24 1.5 14.6 1.5 6.6 6.9 2.9 14.7l6.9 5.3C11.6 14 17.3 9.5 24 9.5z"/>
-      <path fill="#4285F4" d="M46.1 24.5c0-1.6-.1-2.7-.4-3.8H24v7.1h12.9c-.3 2.3-1.9 5.7-5.5 8l8.5 6.6c5-4.6 6.2-11.5 6.2-17.9z"/>
-      <path fill="#FBBC05" d="M9.8 20l-6.9-5.3C.9 17.7 0 20.7 0 24c0 3.2.9 6.3 2.9 9.3l6.9-5.3C9 26.3 8.7 25.2 8.7 24s.3-2.3 1.1-4z"/>
-      <path fill="#34A853" d="M24 46.5c6.5 0 12-2.1 16-5.9l-8.5-6.6c-2.3 1.6-5.4 2.6-7.5 2.6-6.8 0-12.5-4.5-14.3-10.6l-6.9 5.3C6.6 41.1 14.6 46.5 24 46.5z"/>
+      <path fill="#EA4335" d="M24 9.5c3.8 0 6.4 1.6 7.9 3l5.8-5.7C34.5 3.3 29.7 1.5 24 1.5 14.6 1.5 6.6 6.9 2.9 14.7l6.9 5.3C11.6 14 17.3 9.5 24 9.5z" />
+      <path fill="#4285F4" d="M46.1 24.5c0-1.6-.1-2.7-.4-3.8H24v7.1h12.9c-.3 2.3-1.9 5.7-5.5 8l8.5 6.6c5-4.6 6.2-11.5 6.2-17.9z" />
+      <path fill="#FBBC05" d="M9.8 20l-6.9-5.3C.9 17.7 0 20.7 0 24c0 3.2.9 6.3 2.9 9.3l6.9-5.3C9 26.3 8.7 25.2 8.7 24s.3-2.3 1.1-4z" />
+      <path fill="#34A853" d="M24 46.5c6.5 0 12-2.1 16-5.9l-8.5-6.6c-2.3 1.6-5.4 2.6-7.5 2.6-6.8 0-12.5-4.5-14.3-10.6l-6.9 5.3C6.6 41.1 14.6 46.5 24 46.5z" />
     </svg>
     <div className="leading-tight">
       <div className="text-xs text-slate-500">Posted on</div>
@@ -152,16 +152,16 @@ const TestimonialsSection = () => {
   const needsTruncation = (review) => review.length > 150;
 
   return (
-    <section className="py-20 bg-white" id="testimonials">
-      <div className="max-w-7xl mx-auto px-4">
-        <h2 className="text-3xl md:text-4xl font-bold text-primary mb-10 text-center">What Our Clients Say</h2>
+    <section className="py-16 md:py-24 bg-gradient-to-br from-white to-secondary-50" id="testimonials">
+      <div className="max-w-7xl mx-auto px-4 md:px-8">
+        <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-primary mb-8 md:mb-14 text-center">What Our Clients Say</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {testimonials.map((t, idx) => {
             const expanded = isExpanded(t.name);
             const shouldShowButton = needsTruncation(t.review);
 
             return (
-              <article key={t.name} className="rounded-xl border border-slate-200 bg-slate-50 p-5 shadow-sm hover:shadow-md transition-shadow">
+              <article key={t.name} className="rounded-2xl border-2 border-secondary/20 bg-white p-6 shadow-card hover:shadow-card-hover transition-all duration-300 hover:-translate-y-1">
                 <div className="flex items-start gap-3">
                   <div className={`flex items-center justify-center w-10 h-10 rounded-full text-white font-semibold ${getAvatarColor(t.name)}`}>
                     {getInitials(t.name)}

@@ -25,8 +25,7 @@ export default function WhatsAppButton() {
         <div
           onClick={(e) => { e.preventDefault(); e.stopPropagation(); setShowTip(false); }}
           className={
-            `absolute bottom-full right-0 mb-3 max-w-sm sm:max-w-md px-5 py-3 rounded-xl border border-[#25D366]/30 bg-white text-gray-900 text-sm sm:text-base shadow-xl transition-all duration-300 ${
-              showTip ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-1 pointer-events-none'
+            `absolute bottom-full right-0 mb-3 max-w-sm sm:max-w-md px-5 py-3 rounded-xl border border-[#25D366]/30 bg-white text-gray-900 text-sm sm:text-base shadow-xl transition-all duration-300 ${showTip ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-1 pointer-events-none'
             }`
           }
         >
@@ -41,7 +40,7 @@ export default function WhatsAppButton() {
         </div>
 
         <div
-          className="bg-[#25D366] hover:bg-[#1ebe57] transition-colors shadow-lg rounded-full flex items-center justify-center w-14 h-14 sm:w-16 sm:h-16"
+          className="bg-[#25D366] hover:bg-[#1ebe57] transition-all duration-300 shadow-elevated hover:shadow-elevated-hover rounded-full flex items-center justify-center w-16 h-16 sm:w-18 sm:h-18 animate-pulse-slow hover:scale-110"
         >
           {/* WhatsApp SVG logo */}
           <svg
