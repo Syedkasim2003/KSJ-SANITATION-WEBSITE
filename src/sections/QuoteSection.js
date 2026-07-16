@@ -1,5 +1,6 @@
 import React, { useRef, useState } from 'react';
 import emailjs from '@emailjs/browser';
+import { motion } from 'framer-motion';
 
 const QuoteSection = () => {
   const form = useRef();
@@ -7,68 +8,83 @@ const QuoteSection = () => {
 
   const sendEmail = (e) => {
     e.preventDefault();
-
-    // --- IMPORTANT ---
-    // Replace these placeholders with your actual credentials from EmailJS!
     const serviceID = 'service_qjez9hf';
-    const templateID = 'template_lqlgi6n'; // To you
-    const autoReplyTemplateID = 'template_r98aphg'; // To the user
+    const templateID = 'template_lqlgi6n'; 
+    const autoReplyTemplateID = 'template_r98aphg'; 
     const publicKey = '70ENe4xUaB0qzRxIz';
-    // -----------------
 
-    // Send the notification email to yourself
     emailjs.sendForm(serviceID, templateID, form.current, publicKey)
       .then((result) => {
-        console.log('Notification email sent:', result.text);
         setSent(true);
-
-        // After sending the notification, send the auto-reply to the user
-        // We use .send here because we are not sending the entire form, 
-        // but just the parameters the template needs.
         const templateParams = {
           name: form.current.name.value,
           email: form.current.email.value,
           service: form.current.service.value,
           message: form.current.message.value,
         };
-
-        emailjs.send(serviceID, autoReplyTemplateID, templateParams, publicKey)
-          .then((result) => {
-            console.log('Auto-reply email sent:', result.text);
-          }, (error) => {
-            console.log('Failed to send auto-reply:', error.text);
-            // We don't alert the user here as their main request was sent.
-          });
-
+        emailjs.send(serviceID, autoReplyTemplateID, templateParams, publicKey);
       }, (error) => {
-        console.log('Failed to send notification email:', error.text);
         alert('Failed to send the message, please try again.');
       });
   };
 
   return (
-    <section id="quote" className="py-16 md:py-24 bg-gradient-to-br from-secondary/10 via-white to-primary/10 flex justify-center items-center min-h-[60vh]">
-      <div className="w-full max-w-xs sm:max-w-md md:max-w-lg lg:max-w-2xl mx-auto p-6 sm:p-8 md:p-12 rounded-3xl shadow-elevated bg-white/40 backdrop-blur-lg border-2 border-white/60 relative">
-        <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-primary mb-4 sm:mb-6 md:mb-8 text-center">Request a Quote</h2>
-        <form ref={form} onSubmit={sendEmail} className="flex flex-col gap-2 sm:gap-3 md:gap-4">
-          <input required name="name" type="text" placeholder="Name" className="rounded-xl px-4 py-3 sm:px-5 sm:py-4 bg-white/80 backdrop-blur-sm border-2 border-gray-200 focus:ring-2 focus:ring-secondary focus:border-secondary outline-none text-sm sm:text-base md:text-lg transition-all" />
-          <input required name="email" type="email" placeholder="Email" className="rounded-lg px-2 py-2 sm:px-3 sm:py-2 md:px-4 md:py-3 bg-white/60 border border-gray-200 focus:ring-2 focus:ring-primary outline-none text-xs sm:text-sm md:text-base lg:text-lg" />
-          <input required name="phone" type="tel" placeholder="Phone" className="rounded-xl px-4 py-3 sm:px-5 sm:py-4 bg-white/80 backdrop-blur-sm border-2 border-gray-200 focus:ring-2 focus:ring-secondary focus:border-secondary outline-none text-sm sm:text-base md:text-lg transition-all" />
-          <select required name="service" className="rounded-lg px-2 py-2 sm:px-3 sm:py-2 md:px-4 md:py-3 bg-white/60 border border-gray-200 focus:ring-2 focus:ring-primary outline-none text-xs sm:text-sm md:text-base lg:text-lg">
-            <option value="">Select Service</option>
-            <option>Toilet Installation</option>
-            <option>Shower Fitting</option>
-            <option>Leak Repairs</option>
-            <option>Water Tank Cleaning</option>
-            <option>Sanitary Fittings</option>
-            <option>General Plumbing</option>
-          </select>
-          <textarea required name="message" rows={4} placeholder="Message" className="rounded-xl px-4 py-3 sm:px-5 sm:py-4 bg-white/80 backdrop-blur-sm border-2 border-gray-200 focus:ring-2 focus:ring-secondary focus:border-secondary outline-none text-sm sm:text-base md:text-lg transition-all resize-none" />
-          <button type="submit" className="mt-3 py-3 sm:py-4 md:py-5 rounded-xl bg-gradient-to-r from-accent to-accent-dark text-white font-bold text-base sm:text-lg md:text-xl shadow-elevated transition-all duration-300 hover:scale-105 hover:shadow-elevated-hover focus:outline-none focus:ring-4 focus:ring-accent/50">
-            {sent ? 'Sent!' : 'Submit Request'}
-          </button>
-        </form>
-        {sent && <div className="text-green-600 text-center mt-6 font-bold text-base md:text-lg bg-green-50 py-3 px-4 rounded-xl border-2 border-green-200">Thank you! We will contact you soon.</div>}
+    <section id="quote" className="py-24 relative overflow-hidden bg-primary flex justify-center items-center min-h-[70vh]">
+      <div className="absolute inset-0 bg-mesh-light opacity-20 mix-blend-screen z-0"></div>
+      
+      <div className="w-full max-w-3xl mx-auto px-4 sm:px-6 relative z-10">
+        <motion.div 
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="glass-dark p-8 md:p-12 rounded-[3rem] shadow-2xl border border-white/10"
+        >
+          <div className="text-center mb-10">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-white mb-4">Request a <span className="text-secondary">Quote</span></h2>
+            <p className="text-gray-300 font-body text-lg">Tell us about your project and we'll get back to you with a free estimate.</p>
+          </div>
+          
+          <form ref={form} onSubmit={sendEmail} className="flex flex-col gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <input required name="name" type="text" placeholder="Full Name" className="w-full rounded-2xl px-6 py-4 bg-white/5 border border-white/10 focus:ring-2 focus:ring-secondary focus:border-transparent outline-none text-white placeholder-gray-400 font-body transition-all" />
+              <input required name="phone" type="tel" placeholder="Phone Number" className="w-full rounded-2xl px-6 py-4 bg-white/5 border border-white/10 focus:ring-2 focus:ring-secondary focus:border-transparent outline-none text-white placeholder-gray-400 font-body transition-all" />
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <input required name="email" type="email" placeholder="Email Address" className="w-full rounded-2xl px-6 py-4 bg-white/5 border border-white/10 focus:ring-2 focus:ring-secondary focus:border-transparent outline-none text-white placeholder-gray-400 font-body transition-all" />
+              <div className="relative">
+                <select required name="service" className="w-full rounded-2xl px-6 py-4 bg-white/5 border border-white/10 focus:ring-2 focus:ring-secondary focus:border-transparent outline-none text-white font-body transition-all appearance-none">
+                  <option value="" className="text-gray-900">Select Service Type</option>
+                  <option className="text-gray-900">Premium Toilet Installation</option>
+                  <option className="text-gray-900">Luxury Shower Fitting</option>
+                  <option className="text-gray-900">Complete Plumbing Setup</option>
+                  <option className="text-gray-900">Water Tank Cleaning</option>
+                  <option className="text-gray-900">Advanced Leak Repairs</option>
+                </select>
+                <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-6 text-secondary">
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
+                </div>
+              </div>
+            </div>
+            
+            <textarea required name="message" rows={4} placeholder="Project Details" className="w-full rounded-2xl px-6 py-4 bg-white/5 border border-white/10 focus:ring-2 focus:ring-secondary focus:border-transparent outline-none text-white placeholder-gray-400 font-body transition-all resize-none" />
+            
+            <motion.button 
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              type="submit" 
+              className="mt-4 w-full py-5 rounded-full bg-secondary text-white font-bold text-xl shadow-glow-secondary hover:bg-secondary-dark transition-all duration-300"
+            >
+              {sent ? 'Message Sent Successfully!' : 'Get Free Estimate'}
+            </motion.button>
+            
+            {sent && (
+              <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-secondary text-center mt-4 font-bold text-lg font-body">
+                Thank you! We will contact you soon.
+              </motion.div>
+            )}
+          </form>
+        </motion.div>
       </div>
     </section>
   );

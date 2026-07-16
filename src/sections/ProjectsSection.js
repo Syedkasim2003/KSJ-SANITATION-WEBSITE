@@ -2,7 +2,8 @@ import React from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/navigation';
-import { Navigation, Autoplay } from 'swiper/modules';
+import 'swiper/css/effect-fade';
+import { Navigation, Autoplay, EffectFade } from 'swiper/modules';
 import { motion } from 'framer-motion';
 
 const projects = [
@@ -14,7 +15,7 @@ const projects = [
       require('../assets/northgate-toilet.webp'),
     ],
     location: 'Madurai',
-    desc: 'Successfully completed the installation of 32 toilets along with full sanitary works at Hotel North Gate, ensuring premium hygiene and plumbing standards for a superior guest experience.',
+    desc: 'Installation of 32 premium toilets with full sanitary works, ensuring luxury hygiene standards for superior guest experiences.',
   },
   {
     title: 'Pryme Arc Apartment',
@@ -24,7 +25,7 @@ const projects = [
       'https://images.jdmagicbox.com/comp/madurai/k9/0452px452.x452.220306213613.i4k9/catalogue/pryme-ark-surya-nagar-madurai-residential-buildings-9rx4vmhp40.jpg',
     ],
     location: 'Madurai',
-    desc: 'Successfully completed the installation of 24 toilets along with full sanitary works, ensuring high-quality plumbing and modern hygiene standards.',
+    desc: 'Complete installation of 24 toilets with state-of-the-art sanitary works, bringing modern plumbing to residential spaces.',
   },
   {
     title: 'NPM Mahal',
@@ -34,50 +35,105 @@ const projects = [
       require('../assets/npm-mahal-3.jpg'),
     ],
     location: 'Theni',
-    desc: 'Completed comprehensive sanitary and plumbing works at NPM Mahal, Theni, ensuring high-quality installations for a seamless and efficient facility.',
+    desc: 'Comprehensive sanitary and plumbing overhaul for a large-scale event venue, optimizing water flow and waste management.',
   },
 ];
 
 const ProjectsSection = () => (
-  <section id="projects" className="py-16 md:py-24 bg-gradient-to-br from-gray-50 to-white">
-    <div className="max-w-7xl mx-auto px-4 md:px-8">
-      <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-primary mb-8 md:mb-14 text-center">Recent Projects</h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 mb-8 md:mb-12">
+  <section id="projects" className="py-24 bg-grayish relative">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-8">
+        <div className="max-w-2xl">
+          <motion.span 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-secondary font-bold tracking-wider uppercase text-sm mb-4 block"
+          >
+            Our Portfolio
+          </motion.span>
+          <motion.h2 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1 }}
+            className="text-4xl md:text-5xl lg:text-6xl font-black text-primary"
+          >
+            Featured Projects
+          </motion.h2>
+        </div>
+        <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.3 }}
+        >
+          <a href="/projects" className="btn-secondary group">
+            View All Work
+            <svg className="w-5 h-5 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+          </a>
+        </motion.div>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {projects.map((project, idx) => (
           <motion.div
             key={project.title}
-            className="bg-white rounded-3xl shadow-card overflow-hidden flex flex-col cursor-pointer transition-all duration-300 hover:shadow-card-hover hover:-translate-y-2 border-2 border-gray-100 group"
-            whileHover={{ scale: 1.02 }}
-            transition={{ type: 'spring', stiffness: 300, damping: 24 }}
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: idx * 0.2 }}
+            className="group relative h-[450px] rounded-3xl overflow-hidden shadow-card hover:shadow-card-hover transition-all duration-500 cursor-pointer"
           >
             <Swiper
-              modules={[Navigation, Autoplay]}
-              navigation={true}
+              modules={[Navigation, Autoplay, EffectFade]}
+              effect="fade"
+              navigation={{
+                nextEl: `.swiper-button-next-${idx}`,
+                prevEl: `.swiper-button-prev-${idx}`,
+              }}
               slidesPerView={1}
               loop={true}
-              autoplay={{ delay: 5000, disableOnInteraction: false }}
-              className="h-48 sm:h-56 md:h-72 w-full transition-all duration-300"
+              autoplay={{ delay: 4000, disableOnInteraction: false }}
+              className="w-full h-full absolute inset-0"
             >
               {project.images.map((img, i) => (
                 <SwiperSlide key={i}>
                   <img
                     src={img}
-                    alt={project.title}
-                    className="h-48 sm:h-56 md:h-72 w-full object-cover object-center border-b-4 border-secondary/20 transition-all duration-300 group-hover:scale-105"
+                    alt={`${project.title} - view ${i + 1}`}
+                    className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
                   />
+                  <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/40 to-transparent opacity-80 group-hover:opacity-90 transition-opacity duration-300"></div>
                 </SwiperSlide>
               ))}
+              
+              {/* Image Navigation Controls */}
+              <div className="absolute top-4 right-4 z-20 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 translate-y-2 group-hover:translate-y-0">
+                <div className={`swiper-button-prev-${idx} w-10 h-10 rounded-full glass-premium flex items-center justify-center text-white hover:text-secondary hover:bg-white transition-all`}>
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" /></svg>
+                </div>
+                <div className={`swiper-button-next-${idx} w-10 h-10 rounded-full glass-premium flex items-center justify-center text-white hover:text-secondary hover:bg-white transition-all`}>
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
+                </div>
+              </div>
             </Swiper>
-            <div className="p-5 sm:p-6 md:p-8 flex-1 flex flex-col">
-              <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-dark mb-2">{project.title}</h3>
-              <span className="text-sm md:text-base text-secondary font-semibold mb-3">{project.location}</span>
-              <p className="text-sm sm:text-base md:text-lg text-gray-600 flex-1 leading-relaxed">{project.desc}</p>
+            
+            {/* Project Info Overlay */}
+            <div className="absolute bottom-0 left-0 w-full p-8 z-10 flex flex-col justify-end h-full">
+              <div className="transform translate-y-8 group-hover:translate-y-0 transition-transform duration-500">
+                <div className="inline-block px-3 py-1 rounded-full bg-secondary/20 backdrop-blur-md border border-secondary/30 text-secondary text-xs font-bold uppercase tracking-wider mb-3">
+                  {project.location}
+                </div>
+                <h3 className="text-2xl sm:text-3xl font-bold text-white mb-3">{project.title}</h3>
+                <p className="text-gray-300 text-sm sm:text-base opacity-0 group-hover:opacity-100 h-0 group-hover:h-auto transition-all duration-500 overflow-hidden font-body leading-relaxed">
+                  {project.desc}
+                </p>
+              </div>
             </div>
           </motion.div>
         ))}
-      </div>
-      <div className="text-center">
-        <a href="/projects" className="inline-block px-8 py-4 rounded-xl bg-gradient-to-r from-primary to-primary-dark text-white font-bold shadow-elevated hover:shadow-elevated-hover transition-all duration-300 hover:scale-105 text-base md:text-lg">View All Projects</a>
       </div>
     </div>
   </section>

@@ -1,90 +1,116 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import logo from '../assets/ksjlogo-navbar.png';
 import { FaFacebook, FaInstagram, FaTwitter, FaLinkedin, FaMapMarkerAlt, FaPhoneAlt, FaEnvelope } from 'react-icons/fa';
 
 const infoCards = [
   {
-    icon: <FaMapMarkerAlt size={32} className="text-white" />,
-    title: 'Head Office:',
-    content: (
-      <>
-        S Alangulam, Madurai
-      </>
-    ),
+    icon: <FaMapMarkerAlt size={24} className="text-secondary" />,
+    title: 'Head Office',
+    content: 'S Alangulam, Madurai',
     href: 'https://www.google.com/maps/search/?api=1&query=X449%2BFJ7%2C%20S%20Alangulam%2C%20Madurai%2C%20Tamil%20Nadu%20625017',
   },
   {
-    icon: <FaPhoneAlt size={32} className="text-white" />,
-    title: 'Contact Details:',
-    content: (
-      <>
-        <a
-          href="tel:7708235555"
-          className="text-accent font-bold text-xl hover:underline focus:outline-none focus:ring-2 focus:ring-accent rounded"
-        >
-          7708235555
-        </a>
-      </>
-    ),
+    icon: <FaPhoneAlt size={24} className="text-secondary" />,
+    title: 'Contact Details',
+    content: '+91 7708235555',
+    href: 'tel:7708235555'
   },
   {
-    icon: <FaEnvelope size={32} className="text-white" />,
-    title: 'Email Us:',
-    content: (
-      <>
-        <a href="mailto:ksjsanitation06@gmail.com" className="text-accent font-bold text-lg hover:underline">ksjsanitation06@gmail.com</a>
-      </>
-    ),
+    icon: <FaEnvelope size={24} className="text-secondary" />,
+    title: 'Email Us',
+    content: 'ksjsanitation06@gmail.com',
+    href: 'mailto:ksjsanitation06@gmail.com'
   },
 ];
 
 const Footer = () => (
-  <footer id="footer" className="bg-gradient-to-br from-primary to-primary-dark pt-8 pb-6 mt-16 md:mt-24 text-white overflow-hidden">
-    {/* Info Cards */}
-    <div className="w-full flex justify-center z-10 mb-6 md:mb-10">
-      <div className="flex flex-col md:flex-row gap-2 md:gap-4 lg:gap-6 w-full max-w-5xl px-1 sm:px-2 md:px-4">
+  <footer id="footer" className="bg-primary text-white pt-24 pb-8 relative overflow-hidden">
+    {/* Abstract background */}
+    <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-secondary/20 via-primary to-primary pointer-events-none z-0"></div>
+
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      
+      {/* Contact Cards */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16 -mt-32">
         {infoCards.map((card, idx) => {
           const Container = card.href ? 'a' : 'div';
           return (
-            <Container
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: idx * 0.1 }}
               key={idx}
-              href={card.href}
-              target={card.href ? '_blank' : undefined}
-              rel={card.href ? 'noopener noreferrer' : undefined}
-              className="flex-1 bg-white rounded-2xl shadow-elevated flex flex-col items-center py-4 sm:py-6 md:py-8 px-3 sm:px-5 md:px-8 text-center border-t-4 border-secondary min-w-[140px] sm:min-w-[180px] md:min-w-[240px] max-w-xs sm:max-w-sm mx-auto transition-all duration-300 hover:-translate-y-2 hover:shadow-elevated-hover"
             >
-              <div className="bg-gradient-to-br from-secondary to-secondary-dark rounded-full p-3 sm:p-4 md:p-5 shadow-card mb-2 sm:mb-3">
-                {card.icon}
-              </div>
-              <div className="mt-1 sm:mt-2">
-                <h4 className="font-bold text-sm sm:text-base md:text-xl text-primary mb-2 sm:mb-3">{card.title}</h4>
-                <div className="text-dark text-xs sm:text-sm md:text-base">{card.content}</div>
-              </div>
-            </Container>
+              <Container
+                href={card.href}
+                target={card.href ? '_blank' : undefined}
+                rel={card.href ? 'noopener noreferrer' : undefined}
+                className="glass-premium block rounded-3xl p-8 hover:-translate-y-2 transition-transform duration-300"
+              >
+                <div className="w-14 h-14 rounded-2xl bg-secondary/10 flex items-center justify-center mb-6">
+                  {card.icon}
+                </div>
+                <h4 className="font-bold text-xl text-primary mb-2">{card.title}</h4>
+                <p className="text-gray-600 font-body font-medium">{card.content}</p>
+              </Container>
+            </motion.div>
           );
         })}
       </div>
-    </div>
 
-    {/* Main Footer Content */}
-    <div className="flex flex-col items-center justify-center mt-2">
-      <div className="flex items-center justify-center mb-1 sm:mb-2 gap-1 sm:gap-2 md:gap-3">
-        <img src={logo} alt="KSJ Sanitation Logo" className="h-8 w-8 sm:h-10 sm:w-10 md:h-12 md:w-12 rounded-full bg-white object-contain shadow-card" />
-        <h2 className="font-extrabold text-base sm:text-xl md:text-3xl tracking-wide flex items-center">
-          KSJ <span className="text-accent-light ml-1">SANITATION</span>
-        </h2>
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 border-t border-white/10 pt-16 pb-12">
+        <div className="lg:col-span-5">
+          <div className="flex items-center gap-4 mb-6">
+            <img src={logo} alt="KSJ Sanitation Logo" className="h-14 w-14 rounded-full bg-white object-contain shadow-lg" />
+            <h2 className="font-black text-3xl tracking-wide">
+              KSJ <span className="text-secondary">SANITATION</span>
+            </h2>
+          </div>
+          <p className="text-gray-400 font-body leading-relaxed max-w-md mb-8">
+            Setting the industry standard for premium plumbing and sanitary solutions. We build lasting infrastructure with precision and excellence.
+          </p>
+          <div className="flex gap-4">
+            {[FaFacebook, FaInstagram, FaTwitter, FaLinkedin].map((Icon, i) => (
+              <a key={i} href="#" className="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center hover:bg-secondary hover:text-white transition-all duration-300 text-gray-400">
+                <Icon size={20} />
+              </a>
+            ))}
+          </div>
+        </div>
+
+        <div className="lg:col-span-7 grid grid-cols-2 md:grid-cols-3 gap-8">
+          <div>
+            <h4 className="text-lg font-bold mb-6 text-white">Company</h4>
+            <ul className="space-y-4 font-body text-gray-400">
+              <li><a href="#home" className="hover:text-secondary transition-colors">Home</a></li>
+              <li><a href="#about" className="hover:text-secondary transition-colors">About Us</a></li>
+              <li><a href="#services" className="hover:text-secondary transition-colors">Services</a></li>
+              <li><a href="#projects" className="hover:text-secondary transition-colors">Projects</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4 className="text-lg font-bold mb-6 text-white">Services</h4>
+            <ul className="space-y-4 font-body text-gray-400">
+              <li><a href="#" className="hover:text-secondary transition-colors">Plumbing</a></li>
+              <li><a href="#" className="hover:text-secondary transition-colors">Sanitary Setup</a></li>
+              <li><a href="#" className="hover:text-secondary transition-colors">Drainage</a></li>
+              <li><a href="#" className="hover:text-secondary transition-colors">Maintenance</a></li>
+            </ul>
+          </div>
+          <div className="col-span-2 md:col-span-1">
+            <h4 className="text-lg font-bold mb-6 text-white">Legal</h4>
+            <ul className="space-y-4 font-body text-gray-400">
+              <li><a href="#" className="hover:text-secondary transition-colors">Privacy Policy</a></li>
+              <li><a href="#" className="hover:text-secondary transition-colors">Terms of Service</a></li>
+            </ul>
+          </div>
+        </div>
       </div>
-      <p className="max-w-xs sm:max-w-md md:max-w-xl text-center text-xs sm:text-base md:text-lg mb-1 sm:mb-2 md:mb-4 opacity-90">
-        Our plumbing contractors provide courteous, friendly, affordable, and effective residential plumbing services.
-      </p>
-      <div className="flex gap-2 sm:gap-4 md:gap-6 mb-1 sm:mb-2 md:mb-4">
-        <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="hover:text-accent transition"><FaFacebook size={20} className="sm:size-6 md:size-8" /></a>
-        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="hover:text-accent transition"><FaInstagram size={20} className="sm:size-6 md:size-8" /></a>
-        <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="hover:text-accent transition"><FaTwitter size={20} className="sm:size-6 md:size-8" /></a>
-        <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="hover:text-accent transition"><FaLinkedin size={20} className="sm:size-6 md:size-8" /></a>
-      </div>
-      <div className="text-[10px] sm:text-xs md:text-sm text-white/70 opacity-80 mt-1 sm:mt-2">
-        &copy; {new Date().getFullYear()} KSJ Sanitation. All rights reserved.
+
+      <div className="text-center pt-8 border-t border-white/10 text-gray-500 font-body text-sm">
+        &copy; {new Date().getFullYear()} KSJ Sanitation. All rights reserved. Designed for Excellence.
       </div>
     </div>
   </footer>

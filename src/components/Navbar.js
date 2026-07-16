@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link as ScrollLink } from 'react-scroll';
 import { Menu, X } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
 import logo from '../assets/ksjlogo-navbar.png';
 
 const navLinks = [
@@ -9,66 +10,114 @@ const navLinks = [
   { to: 'services', label: 'Services' },
   { to: 'projects', label: 'Projects' },
   { to: 'footer', label: 'Contact Us' },
-  { to: 'quote', label: 'Get a Quote' },
 ];
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
-    <nav className="fixed w-full z-50 bg-white/90 backdrop-blur-lg shadow-elevated border-b border-gray-100">
-      <div className="max-w-7xl mx-auto flex items-center justify-between px-2 sm:px-4 md:px-8 py-3">
-        <div className="flex items-center gap-1 sm:gap-2 md:gap-4">
-          <img src={logo} alt="KSJ Sanitation Logo" className="h-8 w-8 sm:h-10 sm:w-10 md:h-14 md:w-14 rounded-full bg-white object-contain ring-2 ring-primary/10 shadow-sm" />
-          <span className="text-primary font-bold text-base sm:text-lg md:text-2xl tracking-wide flex items-center" style={{ lineHeight: 1 }}>
-            KSJ <span className="text-accent ml-1">SANITATION</span>
-          </span>
-        </div>
-        <div className="hidden lg:flex gap-2 sm:gap-4 md:gap-6">
-          {navLinks.map(link => (
+    <motion.nav 
+      initial={{ y: -100 }}
+      animate={{ y: 0 }}
+      transition={{ duration: 0.8, type: 'spring', stiffness: 120 }}
+      className={`fixed w-full z-50 transition-all duration-500 ${scrolled ? 'py-2' : 'py-6'}`}
+    >
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className={`flex items-center justify-between transition-all duration-500 rounded-full px-6 py-3 ${scrolled ? 'glass-premium shadow-glass' : 'bg-transparent'}`}>
+          
+          <div className="flex items-center gap-3">
+            <motion.img 
+              whileHover={{ rotate: 180 }}
+              transition={{ duration: 0.6 }}
+              src={logo} alt="KSJ Sanitation Logo" className="h-10 w-10 md:h-12 md:w-12 rounded-full bg-white object-contain shadow-md" />
+            <span className={`font-bold text-xl md:text-2xl tracking-wide flex items-center ${scrolled ? 'text-primary' : 'text-white drop-shadow-md'}`} style={{ lineHeight: 1 }}>
+              KSJ <span className="text-secondary ml-1">SANITATION</span>
+            </span>
+          </div>
+
+          <div className="hidden lg:flex items-center gap-8">
+            {navLinks.map(link => (
+              <ScrollLink
+                key={link.to}
+                to={link.to}
+                smooth={true}
+                duration={800}
+                spy={true}
+                offset={-100}
+                activeClass="text-secondary font-bold"
+                className={`cursor-pointer transition-all duration-300 font-medium hover:text-secondary relative group ${scrolled ? 'text-primary' : 'text-white'}`}
+              >
+                {link.label}
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-secondary transition-all duration-300 group-hover:w-full"></span>
+              </ScrollLink>
+            ))}
             <ScrollLink
-              key={link.to}
-              to={link.to}
+              to="quote"
               smooth={true}
-              duration={500}
-              spy={true}
-              offset={link.to === 'footer' ? 0 : -70}
-              activeClass="text-accent font-semibold border-b-2 border-accent"
-              className="cursor-pointer text-dark hover:text-primary transition-all duration-300 px-3 py-2 rounded-lg hover:bg-primary-50 text-sm md:text-base lg:text-lg font-medium"
+              duration={800}
+              offset={-100}
+              className="cursor-pointer btn-secondary !py-2 !px-6 !text-sm"
             >
-              {link.label}
+              Get a Quote
             </ScrollLink>
-          ))}
+          </div>
+
+          <button
+            className="lg:hidden p-2 rounded-full glass-premium"
+            onClick={() => setMenuOpen(!menuOpen)}
+            aria-label="Toggle menu"
+          >
+            {menuOpen ? <X size={24} className="text-primary" /> : <Menu size={24} className="text-primary" />}
+          </button>
         </div>
-        <button
-          className="lg:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors"
-          onClick={() => setMenuOpen(!menuOpen)}
-          aria-label="Toggle menu"
-        >
-          {menuOpen ? <X size={28} className="text-primary" /> : <Menu size={28} className="text-primary" />}
-        </button>
       </div>
-      {/* Mobile Menu */}
-      {menuOpen && (
-        <div className="lg:hidden bg-white/98 backdrop-blur-md shadow-elevated border-t border-gray-100 px-4 py-6 flex flex-col gap-3">
-          {navLinks.map(link => (
+
+      <AnimatePresence>
+        {menuOpen && (
+          <motion.div 
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            className="lg:hidden absolute top-20 left-4 right-4 glass-premium rounded-3xl p-6 flex flex-col gap-4 shadow-elevated border border-white/50"
+          >
+            {navLinks.map(link => (
+              <ScrollLink
+                key={link.to}
+                to={link.to}
+                smooth={true}
+                duration={800}
+                spy={true}
+                offset={-100}
+                activeClass="text-secondary font-bold bg-secondary/10"
+                className="cursor-pointer text-primary hover:text-secondary transition-all duration-300 px-4 py-3 rounded-2xl hover:bg-secondary/5 font-medium"
+                onClick={() => setMenuOpen(false)}
+              >
+                {link.label}
+              </ScrollLink>
+            ))}
             <ScrollLink
-              key={link.to}
-              to={link.to}
+              to="quote"
               smooth={true}
-              duration={500}
-              spy={true}
-              offset={link.to === 'footer' ? 0 : -70}
-              activeClass="text-accent font-semibold bg-accent-50"
-              className="cursor-pointer text-dark hover:text-primary transition-all duration-300 px-4 py-3 rounded-lg hover:bg-primary-50 font-medium border-l-4 border-transparent hover:border-primary"
+              duration={800}
+              offset={-100}
+              className="cursor-pointer btn-primary text-center mt-2"
               onClick={() => setMenuOpen(false)}
             >
-              {link.label}
+              Get a Quote
             </ScrollLink>
-          ))}
-        </div>
-      )}
-    </nav>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </motion.nav>
   );
 };
 
