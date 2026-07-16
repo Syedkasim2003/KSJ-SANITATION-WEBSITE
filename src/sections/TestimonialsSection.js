@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
 import { FaStar, FaStarHalfAlt, FaRegStar } from 'react-icons/fa';
 
@@ -130,4 +130,4 @@ const TestimonialsSection = () => {
   );
 };
 
-export default TestimonialsSection; 
+export default TestimonialsSection;
