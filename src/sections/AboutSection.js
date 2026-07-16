@@ -1,7 +1,7 @@
 import React from 'react';
 import CountUp from 'react-countup';
 import { motion } from 'framer-motion';
-import { FaUserCheck, FaBriefcase, FaUsers, FaTrophy, FaCalendarAlt, FaFaucet, FaTools, FaShower, FaWrench, FaToilet } from 'react-icons/fa';
+import { FaUserCheck, FaBriefcase, FaUsers, FaTrophy, FaCalendarAlt } from 'react-icons/fa';
 
 const stats = [
   { icon: <FaUserCheck className="text-secondary" />, label: 'Happy Clients', end: 200, suffix: '+' },

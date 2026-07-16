@@ -73,7 +73,7 @@ const Footer = () => (
           </p>
           <div className="flex gap-4">
             {[FaFacebook, FaInstagram, FaTwitter, FaLinkedin].map((Icon, i) => (
-              <a key={i} href="#" className="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center hover:bg-secondary hover:text-white transition-all duration-300 text-gray-400">
+              <a key={i} href="/" className="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center hover:bg-secondary hover:text-white transition-all duration-300 text-gray-400">
                 <Icon size={20} />
               </a>
             ))}
@@ -93,17 +93,17 @@ const Footer = () => (
           <div>
             <h4 className="text-lg font-bold mb-6 text-white">Services</h4>
             <ul className="space-y-4 font-body text-gray-400">
-              <li><a href="#" className="hover:text-secondary transition-colors">Plumbing</a></li>
-              <li><a href="#" className="hover:text-secondary transition-colors">Sanitary Setup</a></li>
-              <li><a href="#" className="hover:text-secondary transition-colors">Drainage</a></li>
-              <li><a href="#" className="hover:text-secondary transition-colors">Maintenance</a></li>
+              <li><a href="/" className="hover:text-secondary transition-colors">Plumbing</a></li>
+              <li><a href="/" className="hover:text-secondary transition-colors">Sanitary Setup</a></li>
+              <li><a href="/" className="hover:text-secondary transition-colors">Drainage</a></li>
+              <li><a href="/" className="hover:text-secondary transition-colors">Maintenance</a></li>
             </ul>
           </div>
           <div className="col-span-2 md:col-span-1">
             <h4 className="text-lg font-bold mb-6 text-white">Legal</h4>
             <ul className="space-y-4 font-body text-gray-400">
-              <li><a href="#" className="hover:text-secondary transition-colors">Privacy Policy</a></li>
-              <li><a href="#" className="hover:text-secondary transition-colors">Terms of Service</a></li>
+              <li><a href="/" className="hover:text-secondary transition-colors">Privacy Policy</a></li>
+              <li><a href="/" className="hover:text-secondary transition-colors">Terms of Service</a></li>
             </ul>
           </div>
         </div>
