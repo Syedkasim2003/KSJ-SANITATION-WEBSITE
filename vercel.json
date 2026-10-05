@@ -1,0 +1,12 @@
+{
+  "rewrites": [
+    {
+      "source": "/enterprises",
+      "destination": "https://enterprises-kappa.vercel.app"
+    },
+    {
+      "source": "/enterprises/:path*",
+      "destination": "https://enterprises-kappa.vercel.app/:path*"
+    }
+  ]
+}
