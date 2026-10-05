@@ -29,7 +29,7 @@ const Navbar = () => {
   }, []);
 
   return (
-    <motion.nav 
+    <motion.nav
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.8, type: 'spring', stiffness: 120 }}
@@ -37,10 +37,10 @@ const Navbar = () => {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className={`flex items-center justify-between transition-all duration-500 rounded-full px-6 py-3 ${scrolled || !isHomePage ? 'glass-premium shadow-glass' : 'bg-transparent'}`}>
-          
+
           {/* Logo Brand */}
           <RouterLink to="/" className="flex items-center gap-3">
-            <motion.img 
+            <motion.img
               whileHover={{ rotate: 180 }}
               transition={{ duration: 0.6 }}
               src={logo} alt="KSJ Sanitation Logo" className="h-10 w-10 md:h-12 md:w-12 rounded-full bg-white object-contain shadow-md"
@@ -86,9 +86,8 @@ const Navbar = () => {
                   <RouterLink
                     key={link.path}
                     to={link.path}
-                    className={`transition-all duration-300 font-semibold relative group ${
-                      isActive ? 'text-secondary font-bold' : scrolled || !isHomePage ? 'text-primary' : 'text-white hover:text-secondary'
-                    }`}
+                    className={`transition-all duration-300 font-semibold relative group ${isActive ? 'text-secondary font-bold' : scrolled || !isHomePage ? 'text-primary' : 'text-white hover:text-secondary'
+                      }`}
                   >
                     <span className="flex items-center gap-1.5">
                       {link.label}
@@ -134,7 +133,7 @@ const Navbar = () => {
       {/* Mobile Menu Dropdown */}
       <AnimatePresence>
         {menuOpen && (
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}

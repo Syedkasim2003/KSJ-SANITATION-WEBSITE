@@ -10,8 +10,10 @@ import FounderSection from './sections/FounderSection';
 import TestimonialsSection from './sections/TestimonialsSection';
 import QuoteSection from './sections/QuoteSection';
 import WhatsAppButton from './components/WhatsAppButton';
+import KSJEnterprisesButton from './components/KSJEnterprisesButton';
 import OngoingProjectsPage from './pages/OngoingProjectsPage';
 import OngoingProjectDetailPage from './pages/OngoingProjectDetailPage';
+import KSJEnterprisesPage from './pages/KSJEnterprisesPage';
 import ScrollToTop from './components/ScrollToTop';
 
 function MainLayout() {
@@ -28,7 +30,6 @@ function MainLayout() {
         <QuoteSection />
       </main>
       <Footer />
-      <WhatsAppButton />
     </div>
   );
 }
@@ -41,9 +42,12 @@ function App() {
         <Route path="/" element={<MainLayout />} />
         <Route path="/ongoing-projects" element={<OngoingProjectsPage />} />
         <Route path="/ongoing-projects/:id" element={<OngoingProjectDetailPage />} />
+        <Route path="/ksj-enterprises" element={<KSJEnterprisesPage />} />
         {/* Redirect any unknown path to the home page */}
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
+      <WhatsAppButton />
+      <KSJEnterprisesButton />
     </Router>
   );
 }
