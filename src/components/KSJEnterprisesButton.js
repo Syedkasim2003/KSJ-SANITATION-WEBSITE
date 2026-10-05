@@ -48,8 +48,8 @@ export default function KSJEnterprisesButton() {
         </div>
 
         {/* Floating Action Button */}
-        <Link
-          to="/ksj-enterprises"
+        <a
+          href="/enterprises"
           aria-label="KSJ Enterprises Corporate Division"
           className="relative block"
         >
@@ -70,7 +70,7 @@ export default function KSJEnterprisesButton() {
               <span className="relative inline-flex rounded-full h-4 w-4 bg-secondary border-2 border-primary"></span>
             </span>
           </div>
-        </Link>
+        </a>
       </div>
     </div>
   );
