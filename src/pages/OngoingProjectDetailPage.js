@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Autoplay, EffectFade } from 'swiper/modules';
@@ -16,6 +16,14 @@ import { ongoingProjects } from '../data/ongoingProjectsData';
 const OngoingProjectDetailPage = () => {
   const { id } = useParams();
   const project = ongoingProjects.find((p) => p.id === id);
+
+  useEffect(() => {
+    if (project) {
+      document.title = `${project.title} | Projects | KSJ Sanitation - www.ksjsanitation.com`;
+    } else {
+      document.title = 'Project Details | KSJ Sanitation - www.ksjsanitation.com';
+    }
+  }, [project]);
 
   if (!project) {
     return (

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { MapPin, Calendar, CheckCircle2, ArrowRight, Activity, Filter, Search, Building2 } from 'lucide-react';
@@ -12,6 +12,10 @@ const categories = ['All', 'Commercial', 'Residential'];
 const OngoingProjectsPage = () => {
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [searchQuery, setSearchQuery] = useState('');
+
+  useEffect(() => {
+    document.title = 'Ongoing Projects | KSJ Sanitation - www.ksjsanitation.com';
+  }, []);
 
   const filteredProjects = ongoingProjects.filter(project => {
     const matchesCategory = selectedCategory === 'All' || project.category === selectedCategory;

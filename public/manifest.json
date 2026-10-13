@@ -1,6 +1,7 @@
 {
   "short_name": "KSJ Sanitation",
-  "name": "KSJ Sanitation",
+  "name": "KSJ Sanitation - Plumbing & Sanitary Solutions",
+  "description": "Official website for KSJ Sanitation: Premier plumbing, drainage, and sanitary solutions in Madurai.",
   "icons": [
     {
       "src": "favicon.ico",
@@ -8,18 +9,14 @@
       "type": "image/x-icon"
     },
     {
-      "src": "logo192.png",
+      "src": "ksjlogo.png",
       "type": "image/png",
-      "sizes": "192x192"
-    },
-    {
-      "src": "logo512.png",
-      "type": "image/png",
-      "sizes": "512x512"
+      "sizes": "192x192 512x512"
     }
   ],
-  "start_url": ".",
+  "start_url": "https://www.ksjsanitation.com/",
   "display": "standalone",
-  "theme_color": "#000000",
+  "theme_color": "#0d1b2a",
   "background_color": "#ffffff"
 }
+

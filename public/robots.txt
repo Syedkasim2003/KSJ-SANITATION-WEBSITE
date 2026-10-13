@@ -1,3 +1,6 @@
-# https://www.robotstxt.org/robotstxt.html
+# Allow all search engine crawlers (Googlebot, Bingbot, etc.)
 User-agent: *
-Disallow:
+Allow: /
+
+# XML Sitemap location for search engines
+Sitemap: https://www.ksjsanitation.com/sitemap.xml

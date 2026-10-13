@@ -57,7 +57,7 @@ const HeroSection = () => {
                       transition={{ duration: 0.8, delay: 0.2 }}
                       className="inline-block px-4 py-1.5 rounded-full glass-premium border border-secondary/50 text-secondary font-semibold text-sm mb-6 shadow-glow-secondary animate-float"
                     >
-                      ✨ Premium Sanitation & Plumbing Services
+                      ✨ KSJ Sanitation • Premier Plumbing & Sanitation Services
                     </motion.div>
                     
                     <motion.h1
@@ -66,6 +66,7 @@ const HeroSection = () => {
                       transition={{ duration: 0.8, delay: 0.4 }}
                       className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black text-white leading-[1.1] mb-6 drop-shadow-xl"
                     >
+                      <span className="block text-secondary text-2xl sm:text-3xl md:text-4xl font-black uppercase tracking-wider mb-3">KSJ SANITATION</span>
                       <span className="block">Flowing with</span>
                       <span className="text-gradient-light">Excellence.</span>
                     </motion.h1>
