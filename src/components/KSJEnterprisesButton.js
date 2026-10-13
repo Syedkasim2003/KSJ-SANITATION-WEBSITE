@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
 import { Building2, Sparkles, X } from 'lucide-react';
 
 export default function KSJEnterprisesButton() {
@@ -30,18 +29,21 @@ export default function KSJEnterprisesButton() {
             <X size={16} />
           </button>
 
-          <div className="flex items-start gap-3">
-            <div className="w-9 h-9 rounded-xl bg-secondary/20 border border-secondary/40 flex items-center justify-center shrink-0 mt-0.5">
+          <a
+            href="/enterprises"
+            className="flex items-start gap-3 group/tip cursor-pointer hover:opacity-95 transition-opacity"
+          >
+            <div className="w-9 h-9 rounded-xl bg-secondary/20 border border-secondary/40 flex items-center justify-center shrink-0 mt-0.5 group-hover/tip:bg-secondary/30 transition-colors">
               <Sparkles className="w-5 h-5 text-secondary animate-pulse" />
             </div>
             <div className="leading-snug pr-4">
               <div className="font-bold text-xs uppercase tracking-wider text-secondary">Discover Corporate</div>
-              <div className="font-bold text-sm text-white mt-0.5">KSJ Enterprises</div>
+              <div className="font-bold text-sm text-white mt-0.5 group-hover/tip:text-secondary transition-colors">KSJ Enterprises</div>
               <p className="text-xs text-gray-300 font-body mt-1">
                 Explore B2B wholesale supply, water treatment & commercial contracting.
               </p>
             </div>
-          </div>
+          </a>
 
           {/* Tail Arrow */}
           <div className="absolute -bottom-2 left-6 h-3 w-3 rotate-45 bg-primary border-b border-r border-secondary/30"></div>

@@ -34,6 +34,11 @@ function MainLayout() {
   );
 }
 
+function EnterprisesRedirect() {
+  window.location.replace('https://ksjenterprises.netlify.app/enterprises');
+  return null;
+}
+
 function App() {
   return (
     <Router>
@@ -42,6 +47,7 @@ function App() {
         <Route path="/" element={<MainLayout />} />
         <Route path="/ongoing-projects" element={<OngoingProjectsPage />} />
         <Route path="/ongoing-projects/:id" element={<OngoingProjectDetailPage />} />
+        <Route path="/enterprises" element={<EnterprisesRedirect />} />
         <Route path="/ksj-enterprises" element={<KSJEnterprisesPage />} />
         {/* Redirect any unknown path to the home page */}
         <Route path="*" element={<Navigate to="/" replace />} />

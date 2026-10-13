@@ -1,0 +1,3 @@
+/enterprises https://ksjenterprises.netlify.app/enterprises 200!
+/enterprises/* https://ksjenterprises.netlify.app/enterprises/:splat 200!
+/* /index.html 200

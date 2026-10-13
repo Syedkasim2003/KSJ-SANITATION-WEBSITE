@@ -2,11 +2,11 @@
   "rewrites": [
     {
       "source": "/enterprises",
-      "destination": "https://enterprises-kappa.vercel.app/enterprises"
+      "destination": "https://ksjenterprises.netlify.app/enterprises"
     },
     {
       "source": "/enterprises/:path*",
-      "destination": "https://enterprises-kappa.vercel.app/enterprises/:path*"
+      "destination": "https://ksjenterprises.netlify.app/enterprises/:path*"
     }
   ]
 }
